@@ -1,0 +1,72 @@
+.layout-1{
+  display: flex;
+  margin-right: 10px;
+}
+.div{
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 33.33%;
+}
+
+.layout-1 .top-row1{
+  height: 40px;
+  background: white;
+  margin-bottom: 10px;
+}
+
+.layout-1 .top-row3{
+  height: 100px;
+  background: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+}
+.layout-2{
+  gap: 10px;
+  display: flex;
+
+}
+.layout-2 span{
+  height: 70px;
+  background: white;
+  width: 100%;
+}
+
+.layout-3{
+  display: flex;
+  margin-right: 10px;
+  
+}
+.div1{
+  margin-left: 10px;
+  width: 15%;
+}
+.div2{
+  margin-left: 10px;
+  width: 35%;
+}
+.div3{
+  margin-left: 10px;
+  width: 25%;
+}
+.layout-3 .bot-row1{
+  height: 40px;
+  background: white;
+  margin-bottom: 10px;
+}
+.layout-3 .bot-row2{
+  height: 100px;
+  background: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.layout-4{
+  gap: 10px;
+  display: flex;
+
+}
+.layout-4 span{
+  height: 100px;
+  background: white;
+  width: 100%;
+}
