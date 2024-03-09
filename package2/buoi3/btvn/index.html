@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>btvn</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="box-left">
+
+      <div class="box-left1">
+        <h1>Menu</h1>
+      </div>
+      <div class="box-left2">
+
+        <i class='bx bx-paper-plane large-icon' onclick="openPost()"> &nbsp;Posts</i>
+        <i class='bx bx-message-rounded-dots large-icon' onclick="openComment()"> &nbsp;Comments</i>
+        <i class='bx bx-photo-album large-icon' onclick="openAlbum()"> &nbsp;Albums</i>
+        <i class='bx bx-image large-icon' onclick="openPhoto()"> &nbsp;Photos</i>
+        <i class='bx bx-customize large-icon' onclick="openTodo()"> &nbsp;Todos</i>
+        <i class='bx bx-user large-icon large-icon' onclick="openUser()"> &nbsp;Users</i>
+      </div>
+
+
+
+    </div>
+    <div class="box-right-1">
+      <h1>Content</h1>
+      <div class="box-right">
+
+      </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="meModal">
+
+    </div>
+
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.querySelectorAll(".large-icon");
+
+    function addBoldClass() {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].classList.remove("bold");
+      }
+
+      this.classList.add("bold");
+    }
+
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener("click", addBoldClass);
+    }
+  })
+  </script>
+  <script src="mainPost.js"> </script>
+  <script src="mainAlbum.js"> </script>
+  <script src="mainComment.js"> </script>
+  <script src="mainPhoto.js"> </script>
+  <script src="mainTodo.js"> </script>
+  <script src="mainUser.js"> </script>
+</body>
+
+</html>

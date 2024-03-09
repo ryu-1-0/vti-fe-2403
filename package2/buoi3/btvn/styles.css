@@ -1,0 +1,97 @@
+.container{
+  display: flex;
+  height: 100%;
+}
+.box-left{
+  border-right: 2px solid #ccc;
+  width: 20%;
+  padding: 20px;
+  
+}
+.box-left1{
+  display: flex;   
+  justify-content: center;
+  font-size: 24px;
+
+}
+.box-left2{
+  display: flex;  
+  gap: 20px;
+  flex-direction: column; 
+  padding-left: 30px;
+  padding-top: 20px;
+  cursor: pointer;
+}
+.box-right{
+  /* width: 100%; */
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* height: 100%; */
+
+}
+.box-right-1{
+  width: 80%;
+  /* padding: 10px; */
+  font-size: 24px;
+
+}
+.box-right-2{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+.post-card{
+  border: 1px solid red ;
+  width: 200px;
+  padding: 10px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px; /* Added to limit maximum width of the modal */
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.large-icon {
+  font-size: 24px;
+}
+#photoInfo{
+  display: flex;
+  gap: 30px;
+}
+button{
+  padding: 10px 20px;
+  /* border-radius: 12px; */
+  width: 100%;
+}
+.bold {
+  color: green;
+}
