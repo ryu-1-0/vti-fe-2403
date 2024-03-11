@@ -10,11 +10,11 @@ const generateCommentCard = (commentInfo) => {
   return `
   
     <div class="post-card">
-        <p>postId: ${commentInfo.postId}</p>
-        <p>id: ${commentInfo.id}</p>
-        <p>name: ${commentInfo.name}</p>
-        <p>email: ${commentInfo.email}</p>
-        <p>body: ${commentInfo.body}</p>
+        <p><strong>postId:</strong> ${commentInfo.postId}</p>
+        <p><strong>id:</strong> ${commentInfo.id}</p>
+        <p><strong>name:</strong> ${commentInfo.name}</p>
+        <p><strong>email:</strong> ${commentInfo.email}</p>
+        <p><strong>body:</strong> ${commentInfo.body}</p>
         <button onclick='showDetailComment(${JSON.stringify(
     commentInfo
   )})'>Show Detail</button>

@@ -10,9 +10,9 @@ const generateAlbumCard = (albumInfo) => {
   return `
   
     <div class="post-card">
-        <p>userId: ${albumInfo.userId}</p>
-        <p>id: ${albumInfo.id}</p>
-        <p>title: ${albumInfo.title}</p>
+        <p><strong>userId:</strong> ${albumInfo.userId}</p>
+        <p><strong>id:</strong> ${albumInfo.id}</p>
+        <p><strong>title:</strong> ${albumInfo.title}</p>
         <button onclick='showDetailAlbum(${JSON.stringify(
     albumInfo
   )})'>Show Detail</button>

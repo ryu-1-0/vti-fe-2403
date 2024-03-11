@@ -10,10 +10,10 @@ const generateUserCard = (userInfo) => {
   return `
   
     <div class="post-card">
-      <p>id: ${userInfo.id}</p> 
-      <p>name: ${userInfo.name}</p>
-      <p>username: ${userInfo.username}</p>
-      <p>phone: ${userInfo.phone}</p>
+      <p><strong>id:</strong> ${userInfo.id}</p> 
+      <p><strong>name:</strong> ${userInfo.name}</p>
+      <p><strong>username:</strong> ${userInfo.username}</p>
+      <p><strong>phone:</strong> ${userInfo.phone}</p>
       <button onclick='showDetailUser(${JSON.stringify(
     userInfo
   )})'>Show Detail</button>

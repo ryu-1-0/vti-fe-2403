@@ -10,9 +10,9 @@ const generatePhotoCard = (photoInfo) => {
   return `
   
     <div class="post-card">
-        <p>albumId: ${photoInfo.albumId}</p>
-        <p>id: ${photoInfo.id}</p>
-        <p>title: ${photoInfo.title}</p>
+        <p><strong>albumId:</strong> ${photoInfo.albumId}</p>
+        <p><strong>id:</strong> ${photoInfo.id}</p>
+        <p><strong>title:</strong> ${photoInfo.title}</p>
 
         <button onclick='showDetailPhoto(${JSON.stringify(
     photoInfo

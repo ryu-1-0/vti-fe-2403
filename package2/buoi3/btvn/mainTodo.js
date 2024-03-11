@@ -5,15 +5,14 @@ const getAllTodosList = async () => {
   return todosList
 }
 
-
 const generateTodoCard = (todoInfo) => {
   return `
   
     <div class="post-card">
-        <p>userId: ${todoInfo.userId}</p>
-        <p>id: ${todoInfo.id}</p>
-        <p>title: ${todoInfo.title}</p>
-        <p>completed: ${todoInfo.completed}</p>
+        <p><strong>userId:<s/trong> ${todoInfo.userId}</p>
+        <p><strong>id:</strong> ${todoInfo.id}</p>
+        <p><strong>title:</strong> ${todoInfo.title}</p>
+        <p><strong>completed:</strong> ${todoInfo.completed}</p>
         <button onclick='showDetailTodo(${JSON.stringify(
     todoInfo
   )})'>Show Detail</button>
