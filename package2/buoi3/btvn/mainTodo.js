@@ -9,7 +9,7 @@ const generateTodoCard = (todoInfo) => {
   return `
   
     <div class="post-card">
-        <p><strong>userId:<s/trong> ${todoInfo.userId}</p>
+        <p><strong>userId:</strong> ${todoInfo.userId}</p>
         <p><strong>id:</strong> ${todoInfo.id}</p>
         <p><strong>title:</strong> ${todoInfo.title}</p>
         <p><strong>completed:</strong> ${todoInfo.completed}</p>

@@ -28,7 +28,7 @@ const cardComponent = (item) => {
 const generatePostCard = (postInfo) => {
   let card = cardComponent(postInfo)
   return `
-  
+
   <div class="post-card">
       ${card}
       <button onclick='showDetailPost(${JSON.stringify(
@@ -37,7 +37,6 @@ const generatePostCard = (postInfo) => {
   </div>
 `
   //   return `
-
   //     <div class="post-card">
   //         <p>userId: ${postInfo.userId}</p>
   //         <p>id: ${postInfo.id}</p>

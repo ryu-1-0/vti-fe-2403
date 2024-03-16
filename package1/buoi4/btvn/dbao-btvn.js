@@ -69,7 +69,8 @@ const orders = [
   { id: 17, userId: 2, productId: 17, quantity: 1, date: "2024-02-05T16:15:00Z" },
   { id: 18, userId: 3, productId: 18, quantity: 3, date: "2024-02-04T14:30:00Z" },
   { id: 19, userId: 4, productId: 19, quantity: 2, date: "2024-02-03T11:45:00Z" },
-  { id: 20, userId: 5, productId: 20, quantity: 1, date: "2024-02-02T10:00:00Z" }
+  { id: 20, userId: 5, productId: 20, quantity: 1, date: "2024-02-02T10:00:00Z" },
+  { id: 21, userId: 3, productId: 17, quantity: 1, date: "2024-02-02T10:00:00Z" }
 ];
 
 // btvn:
@@ -137,7 +138,7 @@ const findPriceProduct = (products, productID) => {
   })
   return priceProduct.price
 }
-// console.log('price ', findPrice(products, 4))
+// console.log('price ', findPriceProduct(products, 4))
 
 const totalBill = (users, orders, products, userName) => {
   const total = listOrdersUser(users, orders, userName).reduce(function (item, curr) {
@@ -168,13 +169,13 @@ const listTotalBill = (users, orders, products) => {
 };
 let listTopBill = listTotalBill(users, orders, products).sort((a, b) => b.total - a.total)
 
-// console.log('=========Bài 5===========')
-// for (let i = 0; i < 3; i++) {
-//   console.log(listTopBill[i])
-// }
+console.log('=========Bài 5===========')
+for (let i = 0; i < 3; i++) {
+  console.log(listTopBill[i])
+}
 
 // console.log(listTotalBill(users, orders, products))
-// console.log('=============================')
+console.log('=============================')
 
 
 // 6. so sánh tổng tiền bill của Emily Johnson và Emma Davis
@@ -231,3 +232,31 @@ listProductsOrdered.sort((a, b) => b.totalQuantity - a.totalQuantity)
 // }
 // console.log('=============================')
 // console.log(listProductsOrdered(products, orders))
+
+// 9. tìm list sp order chug của user 1 và 2
+const listOrdersUserToID = (orders, ID) => {
+
+  const listOrderEmma = orders.filter(function (order) {
+    return order.userId === ID
+  })
+  return listOrderEmma
+
+}
+let listOrdersUser2 = listOrdersUserToID(orders, 2)
+let listOrdersUser3 = listOrdersUserToID(orders, 3)
+
+// console.log('listOrdersUser2', listOrdersUser2)
+// console.log('listOrdersUser3', listOrdersUser3)
+let listOrderChung = []
+listOrdersUser3.forEach((order) => {
+  let proChung = listOrdersUser2.find((item) => {
+    console.log('item', item)
+    console.log('order', order)
+    return item.productId === order.productId
+  })
+  console.log('proChung', proChung)
+  if (proChung) {
+    listOrderChung.push({ 'productId': proChung.productId })
+  }
+})
+console.log('first', listOrderChung)
