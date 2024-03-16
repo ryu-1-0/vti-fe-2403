@@ -7,6 +7,8 @@ const formCreateProductDiv = document.querySelector('.form-create-product')
 const formEditProductDiv = document.querySelector('.form-edit-product')
 const modalViewDetailsProductDiv = document.querySelector('.modal-view-details-product')
 const loadingDiv = document.querySelector('.loading')
+const boxUserDiv1 = document.querySelector('.box-user')
+
 //================================================================================================
 // get api Products
 const getAllProducts = async () => {
@@ -222,6 +224,7 @@ const gennerProductCard = (product) => {
 
 const handleOpenProduct = async () => {
   loadingDiv.style.display = 'none'
+  boxUserDiv1.style.display = 'none'
   boxProductDiv.style.display = 'block'
   const productList = await getAllProducts()
   // console.log(productList)

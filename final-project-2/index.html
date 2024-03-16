@@ -131,17 +131,93 @@
 
   <!-- modal view details product -->
   <div class="modal-view-details-product" id="form">
-    
+
   </div>
 
   <!-- form create user -->
-  <div class="form-create-user"></div>
+  <div class="form-create-user" id="form">
+    <div class="form-content">
+      <div>
+        Name:
+        <input id="user-name" type="text" placeholder="enter user name" />
+      </div>
+      <div>
+        Email:
+        <input id="user-email" type="text" placeholder="enter email" />
+      </div>
+      <div>
+        Password:
+        <input id="user-password" type="text" placeholder="enter password" />
+      </div>
+
+      <div>
+        Is Admin:
+        <input id="user-is-admin" type="checkbox" placeholder="enter user Is Admin" />
+      </div>
+      <div>
+        Phone:
+        <input id="user-phone" type="text" placeholder="enter user phone" />
+      </div>
+      <div>
+        Address:
+        <input id="user-address" type="text" placeholder="enter user address" />
+      </div>
+      <div>
+        Avatar:
+        <input id="user-avatar" type="text" placeholder="enter user avatar" />
+      </div>
+      <div class="user-form-actions">
+        <button onclick="handleCancelAddUser()">Cancel</button>
+        <button onclick="handleAddUser()">Create</button>
+
+      </div>
+
+    </div>
+  </div>
 
   <!-- form edit user -->
-  <div class="form-edit-user"></div>
+  <div class="form-edit-user" id="form">
+    <div class="form-content">
+      <div>
+        Name:
+        <input id="edit-user-name" type="text" placeholder="enter user name" />
+      </div>
+      <div>
+        Email:
+        <input id="edit-user-email" type="text" placeholder="enter email" />
+      </div>
+      <div>
+        Password:
+        <input id="edit-user-password" type="text" placeholder="enter password" />
+      </div>
+
+      <div>
+        Is Admin:
+        <input id="edit-user-is-admin" type="checkbox" placeholder="enter user Is Admin" />
+      </div>
+      <div>
+        Phone:
+        <input id="edit-user-phone" type="text" placeholder="enter user phone" />
+      </div>
+      <div>
+        Address:
+        <input id="edit-user-address" type="text" placeholder="enter user address" />
+      </div>
+      <div>
+        Avatar:
+        <input id="edit-user-avatar" type="text" placeholder="enter user avatar" />
+      </div>
+      <div class="user-form-actions">
+        <button onclick="handleCancelEditUser()">Cancel</button>
+        <button onclick="handleEditUser()">Create</button>
+
+      </div>
+
+    </div>
+  </div>
 
   <!-- modal view details user -->
-  <div class="modal-view-details-user"></div>
+  <div class="modal-view-details-user" id="form"></div>
 
 
   <script>
