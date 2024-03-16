@@ -28,7 +28,9 @@
       <div class="box-product">
         <div class="heading-product">
           <h1>Products</h1>
-          <button type="button">Create product</button>
+          <button type="button" onclick="showCreateProductForm()">
+            Create product
+          </button>
         </div>
 
         <div class="content-product"></div>
@@ -37,7 +39,9 @@
       <div class="box-user">
         <div class="heading-user">
           <h1>Users</h1>
-          <button type="button">Create user</button>
+          <button type="button" onclick="showCreateUserForm()">
+            Create user
+          </button>
         </div>
       </div>
 
@@ -47,11 +51,98 @@
     </div>
   </div>
   <!-- form create product -->
+  <div class="form-create-product" id="form">
+    <div class="form-content">
+      <div>
+        Name:
+        <input id="product-name" type="text" placeholder="enter product name" />
+      </div>
+      <div>
+        Type:
+        <input id="product-type" type="text" placeholder="enter product type" />
+      </div>
+      <div>
+        Price:
+        <input id="product-price" type="number" placeholder="enter product Price" />
+      </div>
+      <div>
+        Image:
+        <input id="product-image" type="text" placeholder="enter product Image" />
+      </div>
+      <div>
+        Is Used:
+        <input id="product-is-used" type="checkbox" placeholder="enter product Is Used" />
+      </div>
+      <div>
+        Discount(%):
+        <input id="product-discount" type="text" placeholder="enter product Discount" />
+      </div>
+      <div>
+        Count in Stock:
+        <input id="product-count-in-stock" type="text" placeholder="enter product Count in Stock" />
+      </div>
+      <div class="product-form-actions">
+        <button onclick="handleCancelAddProduct()">Cancel</button>
+        <button onclick="handleAddProduct()">Create</button>
+
+      </div>
+
+    </div>
+  </div>
+
   <!-- form edit product -->
+  <div class="form-edit-product" id="form">
+    <div class="form-content">
+      <div>
+        Name:
+        <input id="edit-product-name" type="text" placeholder="enter product name" />
+      </div>
+      <div>
+        Type:
+        <input id="edit-product-type" type="text" placeholder="enter product type" />
+      </div>
+      <div>
+        Price:
+        <input id="edit-product-price" type="number" placeholder="enter product Price" />
+      </div>
+      <div>
+        Image:
+        <input id="edit-product-image" type="text" placeholder="enter product Image" />
+      </div>
+      <div>
+        Is Used:
+        <input id="edit-product-is-used" type="checkbox" placeholder="enter product Is Used" />
+      </div>
+      <div>
+        Discount(%):
+        <input id="edit-product-discount" type="text" placeholder="enter product Discount" />
+      </div>
+      <div>
+        Count in Stock:
+        <input id="edit-product-count-in-stock" type="text" placeholder="enter product Count in Stock" />
+      </div>
+      <div class="product-form-actions">
+        <button onclick="handleCancelEditProduct(event)">Cancel</button>
+        <button onclick="handleEditProduct()">Edit</button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- modal view details product -->
+  <div class="modal-view-details-product" id="form">
+    
+  </div>
+
   <!-- form create user -->
+  <div class="form-create-user"></div>
+
   <!-- form edit user -->
+  <div class="form-edit-user"></div>
+
   <!-- modal view details user -->
+  <div class="modal-view-details-user"></div>
+
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
