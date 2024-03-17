@@ -7,7 +7,7 @@ const formCreateUserDiv = document.querySelector('.form-create-user')
 const formEditUserDiv = document.querySelector('.form-edit-user')
 const modalViewDetailsUserDiv = document.querySelector('.modal-view-details-user')
 const boxProductDiv1 = document.querySelector('.box-product')
-
+const contentFuncUserDiv = document.querySelector('.content-functional-user')
 //================================================================================================
 // get api Users
 const getAllUsers = async () => {
@@ -124,6 +124,7 @@ const openUserDetailModal = async (selectedUserId) => {
   modalViewDetailsUserDiv.innerHTML = `
   <div class="form-content">
       <div class='user-detail'>
+        <h2>User Details</h2>
           <img class='user-image' src='${userDetail.userImage}' />
           <p>User Name: ${userDetail.userName}</p>
           <p>Email: ${userDetail.email}</p>
@@ -222,28 +223,116 @@ const gennerUserCard = (user) => {
   `
 }
 
+// const handleOpenUser = async () => {
+//   loadingDiv.style.display = 'none'
+//   boxUserDiv.style.display = 'block'
+//   boxProductDiv1.style.display = 'none'
+
+//   const userList = await getAllUsers()
+//   // console.log(userList)
+
+//   if (userList.length) {
+//     contentUserDiv.innerHTML = `
+//     <div class="user-list">
+//       ${userList.map((user) =>
+//       gennerUserCard(user)).join('')
+//       }
+//     </div>
+//     `
+//   } else {
+//     contentUserDiv.innerHTML = '<h1>No users</h1>'
+//   }
+// }
+
+const renderUserList = (userList) => {
+  if (userList.length) {
+    contentUserDiv.innerHTML = `
+      <div class="user-list">
+        ${userList.map((user) => gennerUserCard(user)).join('')}
+      </div>
+    `
+  } else {
+    contentUserDiv.innerHTML = '<h1>No user.</h1>'
+  }
+}
 const handleOpenUser = async () => {
   loadingDiv.style.display = 'none'
   boxUserDiv.style.display = 'block'
   boxProductDiv1.style.display = 'none'
 
-  const userList = await getAllUsers()
-  // console.log(userList)
+  // check is Admin & sort
+  const userIsAdminCheckbox = document.getElementById('filter-user-is-used')
 
-  if (userList.length) {
-    contentUserDiv.innerHTML = `
+  const userList = await getAllUsers()
+  renderUserList(userList)
+
+  // fillter Users
+  const handleUserFilter = async () => {
+    const isAdmin = userIsAdminCheckbox.checked
+    const filteredUserList = isAdmin ? userList.filter(user => user.isAdmin) : userList
+
+    renderUserList(filteredUserList)
+  }
+
+  userIsAdminCheckbox.addEventListener('change', handleUserFilter)
+}
+//=================================================
+// search Users
+
+const searchUsers = async (nameSearch) => {
+  const listAllUsers = await getAllUsers()
+  const searchUser = listAllUsers.filter((user) => {
+    const userName = user.userName.toLowerCase()
+    const searchKeyword = nameSearch.toLowerCase()
+    return userName.includes(searchKeyword)
+  })
+  if (searchUser.length > 0) {
+    // Có kết quả tìm kiếm
+    console.log({ searchUser })
+    console.log('tìm thấy sản phẩm.')
+    contentFuncUserDiv.innerHTML = `
+    <h2>Search Users</h2><hr />
     <div class="user-list">
-      ${userList.map((user) =>
+      ${searchUser.map((user) =>
       gennerUserCard(user)).join('')
       }
     </div>
     `
   } else {
-    contentUserDiv.innerHTML = '<h1>No users</h1>'
+    // Không có kết quả tìm kiếm
+    console.log('Không tìm thấy sản phẩm.')
+    contentFuncUserDiv.innerHTML = `
+    <h2>Search Users</h2><hr />
+    <h1>Không tìm thấy sản phẩm cần tìm!</h1>`
   }
+  contentFuncUserDiv.style.display = 'block'
 }
-//=================================================
-// search products
+const openSearchUsers = (value) => {
+  contentFuncUserDiv.innerHTML = `
+  <h2>Search Users</h2>
+  ${value}
+  `
+  contentFuncUserDiv.style.display = 'block'
+}
+const getValueSearchUser = () => {
+  const inputElement = document.getElementById('search-user-name')
+  const searchButton = document.querySelector('.input-search-user i')
+
+  const performSearch = () => {
+    const searchValue = inputElement.value
+    // Thực hiện hành động tìm kiếm với giá trị searchValue ở đây
+    console.log(searchValue)
+    searchUsers(searchValue)
+    // openSearchProducts(item)
+  }
+
+  searchButton.addEventListener('click', performSearch)
+  inputElement.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      performSearch()
+    }
+  })
+}
 
 //=================================================
 // sort price products

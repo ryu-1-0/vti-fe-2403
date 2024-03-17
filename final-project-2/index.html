@@ -42,7 +42,7 @@
           </div>
           <div class="input-search-product">
 
-            <input id="edit-user-address" type="text" placeholder="search name product">
+            <input id="search-product-name" type="text" placeholder="search name product">
             <i class='bx bx-search-alt-2 large-icon' onclick="getValueSearch()"></i>
           </div>
         </div>
@@ -58,17 +58,34 @@
             Create user
           </button>
         </div>
+        <div class="functional-user">
+          <div class="filter-user">
+            Is Admin:<input id="filter-user-is-used" type="checkbox" />
+          </div>
+          <div class="sort-user">
+            <i class='bx bx-sort-up large-icon'></i>&nbsp;
+            <i class='bx bx-sort-down large-icon'></i>
+          </div>
+          <div class="input-search-user">
+
+            <input id="search-user-name" type="text" placeholder="search name user">
+            <i class='bx bx-search-alt-2 large-icon' onclick="getValueSearchUser()"></i>
+          </div>
+        </div>
+
+        <div class="content-functional-user"></div>
+
+        <div class="content-user"></div>
       </div>
 
-      <div class="search-user"></div>
 
-      <div class="content-user"></div>
 
     </div>
   </div>
   <!-- form create product -->
   <div class="form-create-product" id="form">
     <div class="form-content">
+      <h2>Create product</h2>
       <div>
         Name:
         <input id="product-name" type="text" placeholder="enter product name" />
@@ -109,6 +126,8 @@
   <!-- form edit product -->
   <div class="form-edit-product" id="form">
     <div class="form-content">
+      <h2>Edit product</h2>
+
       <div>
         Name:
         <input id="edit-product-name" type="text" placeholder="enter product name" />
@@ -153,6 +172,8 @@
   <!-- form create user -->
   <div class="form-create-user" id="form">
     <div class="form-content">
+      <h2>Create user</h2>
+
       <div>
         Name:
         <input id="user-name" type="text" placeholder="enter user name" />
@@ -194,6 +215,8 @@
   <!-- form edit user -->
   <div class="form-edit-user" id="form">
     <div class="form-content">
+      <h2>Edit user</h2>
+
       <div>
         Name:
         <input id="edit-user-name" type="text" placeholder="enter user name" />
@@ -224,8 +247,8 @@
         <input id="edit-user-avatar" type="text" placeholder="enter user avatar" />
       </div>
       <div class="user-form-actions">
-        <button onclick="handleCancelEditUser()">Cancel</button>
-        <button onclick="handleEditUser()">Create</button>
+        <button onclick="handleCancelEditUser(event)">Cancel</button>
+        <button onclick="handleEditUser()">Edit</button>
 
       </div>
 

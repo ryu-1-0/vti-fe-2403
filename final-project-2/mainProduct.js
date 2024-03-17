@@ -125,6 +125,7 @@ const openProductDetailModal = async (selectedProductId) => {
   modalViewDetailsProductDiv.innerHTML = `
   <div class="form-content">
       <div class='product-detail'>
+      <h2>Product Details</h2>
           <img class='product-image' src='${productDetail.productImage}' />
           <p>Product Name: ${productDetail.productName}</p>
           <p>Product Type: ${productDetail.productType}</p>
@@ -326,7 +327,7 @@ const openSearchProducts = (value) => {
   contentFuncProductDiv.style.display = 'block'
 }
 const getValueSearch = () => {
-  const inputElement = document.getElementById('edit-user-address')
+  const inputElement = document.getElementById('search-product-name')
   const searchButton = document.querySelector('.input-search-product i')
 
   const performSearch = () => {

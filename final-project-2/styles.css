@@ -118,6 +118,7 @@ button:focus {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 
 }
+.functional-user,
 .functional-product{
   display: flex; 
   gap: 20px;
@@ -126,6 +127,7 @@ button:focus {
   align-items: center;
   justify-content:space-evenly;
 }
+.content-functional-user,
 .content-functional-product{
   border: 1px solid gray;
   border-radius: 6px;
@@ -151,12 +153,15 @@ input{
   font-size: 18px;
 }
 /* input-search-product */
+.input-search-user,
 .input-search-product{
   position: relative;
 }
+.input-search-user input,
 .input-search-product input {
   padding-right: 30px; /* Để tạo không gian cho biểu tượng */
 }
+.input-search-user i,
 .input-search-product i {
   position: absolute;
   top: 50%;
