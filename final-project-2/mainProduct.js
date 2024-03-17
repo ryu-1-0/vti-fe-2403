@@ -8,7 +8,7 @@ const formEditProductDiv = document.querySelector('.form-edit-product')
 const modalViewDetailsProductDiv = document.querySelector('.modal-view-details-product')
 const loadingDiv = document.querySelector('.loading')
 const boxUserDiv1 = document.querySelector('.box-user')
-
+const contentFuncProductDiv = document.querySelector('.content-functional-product')
 //================================================================================================
 // get api Products
 const getAllProducts = async () => {
@@ -221,28 +221,130 @@ const gennerProductCard = (product) => {
   </div>
   `
 }
+// const handleOpenProduct = async () => {
+//   loadingDiv.style.display = 'none'
+//   boxUserDiv1.style.display = 'none'
+//   boxProductDiv.style.display = 'block'
+//   const productList = await getAllProducts()
+//   // console.log(productList)
 
-const handleOpenProduct = async () => {
-  loadingDiv.style.display = 'none'
-  boxUserDiv1.style.display = 'none'
-  boxProductDiv.style.display = 'block'
-  const productList = await getAllProducts()
-  // console.log(productList)
-
+//   if (productList.length) {
+//     contentProductDiv.innerHTML = `
+//     <div class="product-list">
+//       ${productList.map((product) =>
+//       gennerProductCard(product)).join('')
+//       }
+//     </div>
+//     `
+//   } else {
+//     contentProductDiv.innerHTML = '<h1>No products</h1>'
+//   }
+// }
+const renderProductList = (productList) => {
   if (productList.length) {
     contentProductDiv.innerHTML = `
-    <div class="product-list">
-      ${productList.map((product) =>
-      gennerProductCard(product)).join('')
-      }
-    </div>
+      <div class="product-list">
+        ${productList.map((product) => gennerProductCard(product)).join('')}
+      </div>
     `
   } else {
     contentProductDiv.innerHTML = '<h1>No products</h1>'
   }
 }
+const handleOpenProduct = async () => {
+  loadingDiv.style.display = 'none'
+  boxUserDiv1.style.display = 'none'
+  boxProductDiv.style.display = 'block'
+  // console.log(productList)
+
+  // check is Used & sort
+  const productIsUsedCheckbox = document.getElementById('filter-product-is-used')
+  const productSortUp = document.querySelector('.bx-sort-up')
+  const productSortDown = document.querySelector('.bx-sort-down')
+
+  const productList = await getAllProducts()
+  renderProductList(productList)
+  // sort price products
+  const handleSortUp = async () => {
+    const productList = await getAllProducts()
+    const sortedProductList = productList.sort((a, b) => a.price - b.price)
+    renderProductList(sortedProductList)
+  }
+
+  const handleSortDown = async () => {
+    const productList = await getAllProducts()
+    const sortedProductList = productList.sort((a, b) => b.price - a.price)
+    renderProductList(sortedProductList)
+  }
+  // fillter products
+  const handleProductFilter = async () => {
+    const isUsed = productIsUsedCheckbox.checked
+    const filteredProductList = isUsed ? productList.filter(product => product.isUsed) : productList
+
+    renderProductList(filteredProductList)
+  }
+
+  productSortUp.addEventListener('click', handleSortUp)
+  productSortDown.addEventListener('click', handleSortDown)
+  productIsUsedCheckbox.addEventListener('change', handleProductFilter)
+}
 //=================================================
 // search products
+const searchProducts = async (nameSearch) => {
+  const listAllProducts = await getAllProducts()
+  const searchProduct = listAllProducts.filter((product) => {
+    const productName = product.productName.toLowerCase()
+    const searchKeyword = nameSearch.toLowerCase()
+    return productName.includes(searchKeyword)
+  })
+  if (searchProduct.length > 0) {
+    // Có kết quả tìm kiếm
+    console.log({ searchProduct })
+    console.log('tìm thấy sản phẩm.')
+    contentFuncProductDiv.innerHTML = `
+    <h2>Search Products</h2><hr />
+    <div class="product-list">
+      ${searchProduct.map((product) =>
+      gennerProductCard(product)).join('')
+      }
+    </div>
+    `
+  } else {
+    // Không có kết quả tìm kiếm
+    console.log('Không tìm thấy sản phẩm.')
+    contentFuncProductDiv.innerHTML = `
+    <h2>Search Products</h2><hr />
+    <h1>Không tìm thấy sản phẩm cần tìm!</h1>`
+  }
+  contentFuncProductDiv.style.display = 'block'
+}
+const openSearchProducts = (value) => {
+  contentFuncProductDiv.innerHTML = `
+  <h2>Search Products</h2>
+  ${value}
+  `
+  contentFuncProductDiv.style.display = 'block'
+}
+const getValueSearch = () => {
+  const inputElement = document.getElementById('edit-user-address')
+  const searchButton = document.querySelector('.input-search-product i')
+
+  const performSearch = () => {
+    const searchValue = inputElement.value
+    // Thực hiện hành động tìm kiếm với giá trị searchValue ở đây
+    console.log(searchValue)
+    searchProducts(searchValue)
+    // openSearchProducts(item)
+  }
+
+  searchButton.addEventListener('click', performSearch)
+
+  inputElement.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+      performSearch()
+    }
+  })
+}
 
 //=================================================
 // sort price products
