@@ -9,6 +9,8 @@ const modalViewDetailsProductDiv = document.querySelector('.modal-view-details-p
 const loadingDiv = document.querySelector('.loading')
 const boxUserDiv1 = document.querySelector('.box-user')
 const contentFuncProductDiv = document.querySelector('.content-functional-product')
+const frameRightsDiv = document.querySelector('.frame-right')
+
 //================================================================================================
 // get api Products
 const getAllProducts = async () => {
@@ -46,7 +48,9 @@ const deleteProduct = async (productId) => {
   return res.ok
 }
 //================================================================================================
+//=================================================
 // Functions Products
+
 const showCreateProductForm = () => {
   // contentDiv.innerHTML = ''
   formCreateProductDiv.style.display = 'block'
@@ -58,7 +62,7 @@ const handleAddProduct = async () => {
   const productType = document.getElementById("product-type").value
   const price = document.getElementById("product-price").value
   const productImage = document.getElementById("product-image").value
-  const isUsed = document.getElementById("product-is-used").check
+  const isUsed = document.getElementById("product-is-used").checked
   const discount = document.getElementById("product-discount").value
   const countInStock = document.getElementById("product-count-in-stock").value
   const newProduct = {
@@ -70,11 +74,12 @@ const handleAddProduct = async () => {
     discount,
     countInStock,
   }
-  console.log({ newProduct })
+  // console.log({ newProduct })
   // gọi API create
   const isCreated = await createProduct(newProduct)
-  console.log({ isCreated })
+  // console.log({ isCreated })
   if (!isCreated) {
+    let createFormDiv = document.querySelector(".form-create-product")
     const errorStatus = document.createElement("h2")
     errorStatus.innerText = "Create Failed"
     errorStatus.style.color = "red"
@@ -105,7 +110,9 @@ const handleDeleteProduct = async (productId) => {
     productListDiv.appendChild(errorStatus)
   } else {
     // reload the page when creating succefully
-    location.reload()
+    // location.reload()
+    // console.log('handleDeleteProduct')
+    handleOpenProduct()
   }
 }
 //=================================================
@@ -120,20 +127,20 @@ const openProductDetailModal = async (selectedProductId) => {
 
   const productDetail = await getProductById(selectedProductId)
 
-  console.log({ productDetail })
+  // console.log({ productDetail })
 
   modalViewDetailsProductDiv.innerHTML = `
   <div class="form-content">
       <div class='product-detail'>
       <h2>Product Details</h2>
           <img class='product-image' src='${productDetail.productImage}' />
-          <p>Product Name: ${productDetail.productName}</p>
-          <p>Product Type: ${productDetail.productType}</p>
-          <p>Product Price: ${productDetail.productPrice}</p>
-          <p>Is Used: <input type='checkbox' ${productDetail.isUsed && "checked"
+          <p><strong>Product Name:</strong> ${productDetail.productName}</p>
+          <p><strong>Product Type:</strong> ${productDetail.productType}</p>
+          <p><strong>Product Price:</strong> ${productDetail.price}</p>
+          <p><strong>Is Used:</strong> <input type='checkbox' ${productDetail.isUsed && "checked"
     } /></p>
-          <p>Count In Stock: ${productDetail.countInStock}</p>
-          <p>Discount: ${productDetail.discount}%</p>
+          <p><strong>Count In Stock:</strong> ${productDetail.countInStock}</p>
+          <p><strong>Discount:</strong> ${productDetail.discount}%</p>
           <button onclick='closeDetailModal()'>close</button>
       </div>
       </div>
@@ -152,7 +159,7 @@ const handleEditProduct = async () => {
   const productType = document.getElementById("edit-product-type").value
   const price = document.getElementById("edit-product-price").value
   const productImage = document.getElementById("edit-product-image").value
-  const isUsed = document.getElementById("edit-product-is-used").check
+  const isUsed = document.getElementById("edit-product-is-used").checked
   const discount = document.getElementById("edit-product-discount").value
   const countInStock = document.getElementById("edit-product-count-in-stock").value
   const editedProduct = {
@@ -169,6 +176,7 @@ const handleEditProduct = async () => {
   const isEdited = await editProduct(editedProduct)
   if (isEdited) {
     location.reload()
+    handleOpenProduct()
   } else {
     const formEditProductDiv = document.querySelector(".form-edit-product")
     const errorStatus = document.createElement("h2")
@@ -197,15 +205,20 @@ const openEditProductForm = async (selectedProduct) => {
   formEditProductDiv.style.display = 'block'
 
 }
-//=================================================
 // card product
 const gennerProductCard = (product) => {
   return `
   <div class="product-card">
     <img class='product-image' src='${product.productImage}'/>
     <p><strong>${product.productName}</strong></p>
-    ${product.used ? '<h4> Is used </h4>' : ''}
-    <p>${product.price}</p>
+    ${product.used ? '<h4><strong> Is used </strong></h4>' : ''}
+    <p><s>${product.price}</s></p>
+    <p style="color:red;">
+    ${product.discount ?
+      (product.price - product.price * product.discount / 100).toFixed(2) :
+      product.discount}  $
+    <span style="font-size:12px">- ${product.discount ? product.discount : ''} %</span>
+    </p>
     <div class='actions'>
       <button onclick='openProductDetailModal(${JSON.stringify(product.id)})'>
       View Detail
@@ -219,6 +232,7 @@ const gennerProductCard = (product) => {
       Edit
       </button>
     </div>
+    
   </div>
   `
 }
@@ -267,13 +281,11 @@ const handleOpenProduct = async () => {
   renderProductList(productList)
   // sort price products
   const handleSortUp = async () => {
-    const productList = await getAllProducts()
     const sortedProductList = productList.sort((a, b) => a.price - b.price)
     renderProductList(sortedProductList)
   }
 
   const handleSortDown = async () => {
-    const productList = await getAllProducts()
     const sortedProductList = productList.sort((a, b) => b.price - a.price)
     renderProductList(sortedProductList)
   }
@@ -300,8 +312,9 @@ const searchProducts = async (nameSearch) => {
   })
   if (searchProduct.length > 0) {
     // Có kết quả tìm kiếm
-    console.log({ searchProduct })
-    console.log('tìm thấy sản phẩm.')
+    // console.log({ searchProduct })
+    // console.log('tìm thấy sản phẩm.')
+    contentProductDiv.style.display = 'none'
     contentFuncProductDiv.innerHTML = `
     <h2>Search Products</h2><hr />
     <div class="product-list">
@@ -312,20 +325,16 @@ const searchProducts = async (nameSearch) => {
     `
   } else {
     // Không có kết quả tìm kiếm
-    console.log('Không tìm thấy sản phẩm.')
+    // console.log('Không tìm thấy sản phẩm.')
+    contentProductDiv.style.display = 'none'
+
     contentFuncProductDiv.innerHTML = `
     <h2>Search Products</h2><hr />
     <h1>Không tìm thấy sản phẩm cần tìm!</h1>`
   }
   contentFuncProductDiv.style.display = 'block'
 }
-const openSearchProducts = (value) => {
-  contentFuncProductDiv.innerHTML = `
-  <h2>Search Products</h2>
-  ${value}
-  `
-  contentFuncProductDiv.style.display = 'block'
-}
+
 const getValueSearch = () => {
   const inputElement = document.getElementById('search-product-name')
   const searchButton = document.querySelector('.input-search-product i')
@@ -333,9 +342,8 @@ const getValueSearch = () => {
   const performSearch = () => {
     const searchValue = inputElement.value
     // Thực hiện hành động tìm kiếm với giá trị searchValue ở đây
-    console.log(searchValue)
+    // console.log(searchValue)
     searchProducts(searchValue)
-    // openSearchProducts(item)
   }
 
   searchButton.addEventListener('click', performSearch)

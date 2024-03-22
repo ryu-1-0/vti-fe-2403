@@ -11,7 +11,27 @@
 </head>
 
 <body>
+  <header class="title-header">
+    <div class="header">
+      <div>
+        <h1>Ryu</h1>
+      </div>
 
+      <div class="input-search-product">
+
+        <input id="search-name" type="text" placeholder="search ">
+        <i class='bx bx-search-alt-2 large-icon color-search-header'></i>
+      </div>
+      <div>
+        <i class='bx bxs-cart-add large-icon'></i>
+      </div>
+      <div>
+        <i class='bx bx-user-circle large-icon'></i>
+      </div>
+
+    </div>
+
+  </header>
   <div class="container">
     <div class="frame-left">
       <h1>Menu</h1>
@@ -62,10 +82,7 @@
           <div class="filter-user">
             Is Admin:<input id="filter-user-is-used" type="checkbox" />
           </div>
-          <div class="sort-user">
-            <i class='bx bx-sort-up large-icon'></i>&nbsp;
-            <i class='bx bx-sort-down large-icon'></i>
-          </div>
+          
           <div class="input-search-user">
 
             <input id="search-user-name" type="text" placeholder="search name user">
@@ -87,31 +104,31 @@
     <div class="form-content">
       <h2>Create product</h2>
       <div>
-        Name:
+        <strong>Name:</strong>&nbsp;
         <input id="product-name" type="text" placeholder="enter product name" />
       </div>
       <div>
-        Type:
+        <strong>Type:</strong>
         <input id="product-type" type="text" placeholder="enter product type" />
       </div>
       <div>
-        Price:
+        <strong>Price:</strong>
         <input id="product-price" type="number" placeholder="enter product Price" />
       </div>
       <div>
-        Image:
+        <strong>Image:</strong>
         <input id="product-image" type="text" placeholder="enter product Image" />
       </div>
       <div>
-        Is Used:
-        <input id="product-is-used" type="checkbox" placeholder="enter product Is Used" />
+        <strong>Is Used:</strong>
+        <input id="product-is-used" type="checkbox" />
       </div>
       <div>
-        Discount(%):
+        <strong>Discount(%):</strong>
         <input id="product-discount" type="text" placeholder="enter product Discount" />
       </div>
       <div>
-        Count in Stock:
+        <strong>Count in Stock:</strong>
         <input id="product-count-in-stock" type="text" placeholder="enter product Count in Stock" />
       </div>
       <div class="product-form-actions">
@@ -129,31 +146,31 @@
       <h2>Edit product</h2>
 
       <div>
-        Name:
+        <strong>Name:</strong>
         <input id="edit-product-name" type="text" placeholder="enter product name" />
       </div>
       <div>
-        Type:
+        <strong>Type:</strong>
         <input id="edit-product-type" type="text" placeholder="enter product type" />
       </div>
       <div>
-        Price:
+        <strong>Price:</strong>
         <input id="edit-product-price" type="number" placeholder="enter product Price" />
       </div>
       <div>
-        Image:
+        <strong>Image:</strong>
         <input id="edit-product-image" type="text" placeholder="enter product Image" />
       </div>
       <div>
-        Is Used:
-        <input id="edit-product-is-used" type="checkbox" placeholder="enter product Is Used" />
+        <strong>Is Used:</strong>
+        <input id="edit-product-is-used" type="checkbox" />
       </div>
       <div>
-        Discount(%):
+        <strong>Discount(%):</strong>
         <input id="edit-product-discount" type="text" placeholder="enter product Discount" />
       </div>
       <div>
-        Count in Stock:
+        <strong>Count in Stock:</strong>
         <input id="edit-product-count-in-stock" type="text" placeholder="enter product Count in Stock" />
       </div>
       <div class="product-form-actions">
@@ -175,32 +192,32 @@
       <h2>Create user</h2>
 
       <div>
-        Name:
+        <strong>Name:</strong>
         <input id="user-name" type="text" placeholder="enter user name" />
       </div>
       <div>
-        Email:
+        <strong>Email:</strong>
         <input id="user-email" type="text" placeholder="enter email" />
       </div>
       <div>
-        Password:
+        <strong>Password:</strong>
         <input id="user-password" type="text" placeholder="enter password" />
       </div>
 
       <div>
-        Is Admin:
-        <input id="user-is-admin" type="checkbox" placeholder="enter user Is Admin" />
+        <strong>Is Admin:</strong>
+        <input id="user-is-admin" type="checkbox" />
       </div>
       <div>
-        Phone:
+        <strong>Phone:</strong>
         <input id="user-phone" type="text" placeholder="enter user phone" />
       </div>
       <div>
-        Address:
+        <strong>Address:</strong>
         <input id="user-address" type="text" placeholder="enter user address" />
       </div>
       <div>
-        Avatar:
+        <strong>Avatar:</strong>
         <input id="user-avatar" type="text" placeholder="enter user avatar" />
       </div>
       <div class="user-form-actions">
@@ -218,32 +235,32 @@
       <h2>Edit user</h2>
 
       <div>
-        Name:
+        <strong>Name:</strong>
         <input id="edit-user-name" type="text" placeholder="enter user name" />
       </div>
       <div>
-        Email:
+        <strong>Email:</strong>
         <input id="edit-user-email" type="text" placeholder="enter email" />
       </div>
       <div>
-        Password:
+        <strong>Password:</strong>
         <input id="edit-user-password" type="text" placeholder="enter password" />
       </div>
 
       <div>
-        Is Admin:
-        <input id="edit-user-is-admin" type="checkbox" placeholder="enter user Is Admin" />
+        <strong>Is Admin:</strong>
+        <input id="edit-user-is-admin" type="checkbox" />
       </div>
       <div>
-        Phone:
+        <strong>Phone:</strong>
         <input id="edit-user-phone" type="text" placeholder="enter user phone" />
       </div>
       <div>
-        Address:
+        <strong>Address:</strong>
         <input id="edit-user-address" type="text" placeholder="enter user address" />
       </div>
       <div>
-        Avatar:
+        <strong>Avatar:</strong>
         <input id="edit-user-avatar" type="text" placeholder="enter user avatar" />
       </div>
       <div class="user-form-actions">
@@ -278,6 +295,11 @@
   </script>
   <script src="mainProduct.js"></script>
   <script src="mainUser.js"></script>
+
+  <footer>
+    <Divider />
+    &copy; 2024 Ryu
+  </footer>
 </body>
 
 </html>

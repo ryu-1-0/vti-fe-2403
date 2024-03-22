@@ -2,16 +2,49 @@
   /* 62.5% of 16px user agent font size is 10px 
   font-size: 62.5%;
 } */
+header{
+  border: 1px solid rgb(140, 45, 228);
+  /* background: rgb(140, 45, 228); */
+  background-image:
+    linear-gradient(183deg, rgba(23,3,93,1) 4%, rgb(224, 26, 214) 50%, rgba(29,4,76,1) 96%);
+}
+footer{
+  border-top: 1px solid rgb(76,27,133,0.5);
+  text-align: center;
+  color: #888;
+  padding-top: 10px;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.color-search-header{
+  color: black;
+}
+#search-name{
+  font-size:18px;
+  height: 30px;
+  width: 260px;
+  border-radius: 10px;
+}
+.title-header{
+  color: #fefefe;
+  font-size: 18px;
+}
 .container{
   display: flex;
   margin: 10px;
 }
 .frame-left{
-  padding: 10px 20px 0 0;
+  padding: 10px 20px 0 10px;
   text-align: center;
   height: 100vh;
-  border-right: 1px solid gray;
-
+  border: 1px solid rgb(140, 45, 228);
+  border-radius: 8px;
+  width: 20%;
+  box-shadow: 0 3px 10px rgb(140, 45, 228,0.4);
+  margin-right: 10px;
 }
 .box-item{
   display: flex;  
@@ -74,7 +107,11 @@
 .product-card{
   border: 1px solid rgb(128, 128, 128, 0.4);
   border-radius: 6px;
-  padding: 15px;
+  padding: 20px;
+}
+
+.product-card:hover img{
+  transform: scale(1.1);
 }
 .user-card:hover,
 .user-card:focus,
@@ -82,17 +119,12 @@
 .product-card:focus{
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
 }
+.user-image,
 .product-image{
   height: auto;
-  width: 250px;
+  width: 200px;
 }
-.content-product{
-  /* display: flex; */
-  /* gap: 10px; */
-  /* flex-wrap: wrap; */
-  /* width: 100%; */
 
-}
 .user-list,
 .product-list{
   display: flex;
@@ -108,14 +140,14 @@ button{
   padding: 10px 10px;
 }
 .color {
-  color: blue;
+  color: blueviolet;
 }
 button:hover,
 button:focus {
-  color: blue;
+  color: rgb(138, 43, 226);
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 10px rgb(138, 43, 226,0.25);
 
 }
 .functional-user,
@@ -135,11 +167,7 @@ button:focus {
   margin-bottom: 20px;
   padding: 20px;
 }
-.search-product,
-.sort-product,
-.filter-product{
-  /* text-align: center; */
-}
+
 /*  */
 .modal-view-details-user,
 .form-edit-user,
@@ -150,7 +178,7 @@ input{
   border: 1px solid gray;
   border-radius: 4px;
   size: large;
-  font-size: 18px;
+  font-size: 16px;
 }
 /* input-search-product */
 .input-search-user,

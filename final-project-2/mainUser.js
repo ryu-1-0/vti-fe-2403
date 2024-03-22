@@ -56,7 +56,7 @@ const handleAddUser = async () => {
   const userName = document.getElementById("user-name").value
   const email = document.getElementById("user-email").value
   const password = document.getElementById("user-password").value
-  const isAdmin = document.getElementById("user-is-admin").check
+  const isAdmin = document.getElementById("user-is-admin").checked
   const phone = document.getElementById("user-phone").value
   const address = document.getElementById("user-address").value
   const avatar = document.getElementById("user-avatar").value
@@ -74,6 +74,8 @@ const handleAddUser = async () => {
   const isCreated = await createUser(newUser)
   console.log({ isCreated })
   if (!isCreated) {
+    let createFormDiv = document.querySelector(".form-create-user")
+
     const errorStatus = document.createElement("h2")
     errorStatus.innerText = "Create Failed"
     errorStatus.style.color = "red"
@@ -95,9 +97,9 @@ const handleCancelAddUser = () => {
 //=================================================
 // deleteUser
 const handleDeleteUser = async (userId) => {
-  const isDeletedOk = deleteUser(userId)
+  const isDeletedOk = await deleteUser(userId)
   if (!isDeletedOk) {
-    const userListDiv = document.querySelector(".user-list")
+    let userListDiv = document.querySelector(".user-list")
     const errorStatus = document.createElement("h2")
     errorStatus.innerText = "Delete Failed"
     errorStatus.style.color = "red"
@@ -119,20 +121,19 @@ const openUserDetailModal = async (selectedUserId) => {
 
   const userDetail = await getUserById(selectedUserId)
 
-  console.log({ userDetail })
+  // console.log({ userDetail })
 
   modalViewDetailsUserDiv.innerHTML = `
   <div class="form-content">
       <div class='user-detail'>
         <h2>User Details</h2>
-          <img class='user-image' src='${userDetail.userImage}' />
+          <img class='user-image' src='${userDetail.avatar}' />
           <p>User Name: ${userDetail.userName}</p>
           <p>Email: ${userDetail.email}</p>
           <pPassword: ${userDetail.password}</p>
           <p>Is Admin: ${userDetail.isAdmin}</p>
           <p>Phone: ${userDetail.phone}</p>
           <p>Address: ${userDetail.address}</p>
-          <p>Avatar: ${userDetail.avatar}</p>
           <button onclick='closeUserDetailModal()'>close</button>
       </div>
       </div>
@@ -150,7 +151,7 @@ const handleEditUser = async () => {
   const userName = document.getElementById("edit-user-name").value
   const email = document.getElementById("edit-user-email").value
   const password = document.getElementById("edit-user-password").value
-  const isAdmin = document.getElementById("edit-user-is-admin").check
+  const isAdmin = document.getElementById("edit-user-is-admin").checked
   const phone = document.getElementById("edit-user-phone").value
   const address = document.getElementById("edit-user-address").value
   const avatar = document.getElementById("edit-user-avatar").value
@@ -169,7 +170,7 @@ const handleEditUser = async () => {
   if (isEdited) {
     location.reload()
   } else {
-    const formEditUserDiv = document.querySelector(".form-edit-user")
+    let formEditUserDiv = document.querySelector(".form-edit-user")
     const errorStatus = document.createElement("h2")
     errorStatus.innerText = "Create Failed"
     errorStatus.style.color = "red"
@@ -223,26 +224,6 @@ const gennerUserCard = (user) => {
   `
 }
 
-// const handleOpenUser = async () => {
-//   loadingDiv.style.display = 'none'
-//   boxUserDiv.style.display = 'block'
-//   boxProductDiv1.style.display = 'none'
-
-//   const userList = await getAllUsers()
-//   // console.log(userList)
-
-//   if (userList.length) {
-//     contentUserDiv.innerHTML = `
-//     <div class="user-list">
-//       ${userList.map((user) =>
-//       gennerUserCard(user)).join('')
-//       }
-//     </div>
-//     `
-//   } else {
-//     contentUserDiv.innerHTML = '<h1>No users</h1>'
-//   }
-// }
 
 const renderUserList = (userList) => {
   if (userList.length) {
@@ -288,8 +269,9 @@ const searchUsers = async (nameSearch) => {
   })
   if (searchUser.length > 0) {
     // Có kết quả tìm kiếm
-    console.log({ searchUser })
-    console.log('tìm thấy sản phẩm.')
+    // console.log({ searchUser })
+    // console.log('tìm thấy sản phẩm.')
+    contentUserDiv.style.display = 'none'
     contentFuncUserDiv.innerHTML = `
     <h2>Search Users</h2><hr />
     <div class="user-list">
@@ -300,20 +282,16 @@ const searchUsers = async (nameSearch) => {
     `
   } else {
     // Không có kết quả tìm kiếm
-    console.log('Không tìm thấy sản phẩm.')
+    // console.log('Không tìm thấy sản phẩm.')
+    contentUserDiv.style.display = 'none'
+
     contentFuncUserDiv.innerHTML = `
     <h2>Search Users</h2><hr />
     <h1>Không tìm thấy sản phẩm cần tìm!</h1>`
   }
   contentFuncUserDiv.style.display = 'block'
 }
-const openSearchUsers = (value) => {
-  contentFuncUserDiv.innerHTML = `
-  <h2>Search Users</h2>
-  ${value}
-  `
-  contentFuncUserDiv.style.display = 'block'
-}
+
 const getValueSearchUser = () => {
   const inputElement = document.getElementById('search-user-name')
   const searchButton = document.querySelector('.input-search-user i')
@@ -321,8 +299,8 @@ const getValueSearchUser = () => {
   const performSearch = () => {
     const searchValue = inputElement.value
     // Thực hiện hành động tìm kiếm với giá trị searchValue ở đây
-    console.log(searchValue)
     searchUsers(searchValue)
+
     // openSearchProducts(item)
   }
 
