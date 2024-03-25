@@ -65,6 +65,10 @@ const handleAddProduct = async () => {
   const isUsed = document.getElementById("product-is-used").checked
   const discount = document.getElementById("product-discount").value
   const countInStock = document.getElementById("product-count-in-stock").value
+  if (!productName) {
+    alert("Please enter a productName")
+    return
+  }
   const newProduct = {
     productName,
     productType,
@@ -162,27 +166,45 @@ const handleEditProduct = async () => {
   const isUsed = document.getElementById("edit-product-is-used").checked
   const discount = document.getElementById("edit-product-discount").value
   const countInStock = document.getElementById("edit-product-count-in-stock").value
-  const editedProduct = {
-    id: localStorage.getItem("selected-product-id"),
-    productName,
-    productType,
-    price,
-    productImage,
-    isUsed,
-    discount,
-    countInStock,
+  const originalProduct = await getProductById(localStorage.getItem("selected-product-id"));
+  // Kiểm tra xem các thuộc tính đã được sửa đổi hay không
+  let isEdited = false;
+  if (originalProduct) {
+    if (productName !== originalProduct.productName) {
+      isEdited = true;
+    } else {
+      alert("Product no edit-product-name")
+      return
+    }
+
   }
 
-  const isEdited = await editProduct(editedProduct)
   if (isEdited) {
-    location.reload()
-    handleOpenProduct()
+    const editedProduct = {
+      id: localStorage.getItem("selected-product-id"),
+      productName,
+      productType,
+      price,
+      productImage,
+      isUsed,
+      discount,
+      countInStock,
+    };
+
+    // Tiến hành chỉnh sửa sản phẩm
+    const isProductEdited = await editProduct(editedProduct);
+    if (isProductEdited) {
+      location.reload();
+      // handleOpenProduct();
+    } else {
+      const formEditProductDiv = document.querySelector(".form-edit-product");
+      const errorStatus = document.createElement("h2");
+      errorStatus.innerText = "Edit Failed";
+      errorStatus.style.color = "red";
+      formEditProductDiv.appendChild(errorStatus);
+    }
   } else {
-    const formEditProductDiv = document.querySelector(".form-edit-product")
-    const errorStatus = document.createElement("h2")
-    errorStatus.innerText = "Create Failed"
-    errorStatus.style.color = "red"
-    formEditProductDiv.appendChild(errorStatus)
+    console.log("No changes made to the product.");
   }
 }
 const openEditProductForm = async (selectedProduct) => {
@@ -207,12 +229,29 @@ const openEditProductForm = async (selectedProduct) => {
 }
 // card product
 const gennerProductCard = (product) => {
+  // ${product.isUsed ? `
+  //   <h4>
+  //   <strong> Is used: </strong>
+  //   <input id="filter-product-is-used" type="checkbox" checked disabled/>
+  //   </h4>`: ''}
   return `
   <div class="product-card">
     <img class='product-image' src='${product.productImage}'/>
     <p><strong>${product.productName}</strong></p>
-    ${product.used ? '<h4><strong> Is used </strong></h4>' : ''}
-    <p><s>${product.price}</s></p>
+
+    <span style=" margin-right: 4px; color:rgb(245, 233, 5);">
+    <i class='bx bxs-star' ></i>
+    <i class='bx bxs-star' ></i>
+    <i class='bx bxs-star' ></i>
+    <i class='bx bxs-star' ></i>
+    <i class='bx bxs-star' ></i>
+    </span>
+    <span> |  Đã bán 100+ </span>
+    <p><s>${product.price} $</s>
+    ${product.isUsed ? `
+    <input id="filter-product-is-used" type="checkbox" checked disabled/>
+    `: ''}
+    </p>
     <p style="color:red;">
     ${product.discount ?
       (product.price - product.price * product.discount / 100).toFixed(2) :

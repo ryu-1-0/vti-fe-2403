@@ -2,12 +2,10 @@
   /* 62.5% of 16px user agent font size is 10px 
   font-size: 62.5%;
 } */
-header{
-  border: 1px solid rgb(140, 45, 228);
-  /* background: rgb(140, 45, 228); */
-  background-image:
-    linear-gradient(183deg, rgba(23,3,93,1) 4%, rgb(224, 26, 214) 50%, rgba(29,4,76,1) 96%);
+body{
+  margin: 0 auto;
 }
+
 footer{
   border-top: 1px solid rgb(76,27,133,0.5);
   text-align: center;
@@ -28,9 +26,17 @@ footer{
   width: 260px;
   border-radius: 10px;
 }
+.text-header{
+  font-size: 45px;
+  font-weight: bold;
+  margin: 20px auto;
+}
 .title-header{
-  color: #fefefe;
-  font-size: 18px;
+  background: linear-gradient(0deg, rgba(59,12,151,0.960463408996411) 15%, rgba(240,38,234,1) 50%, rgba(32,32,111,0.960463408996411) 87%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  box-shadow: 0 0 5px rgba(240,38,234,1);
 }
 .container{
   display: flex;
@@ -109,7 +115,7 @@ footer{
   border-radius: 6px;
   padding: 20px;
 }
-
+.user-card:hover img,
 .product-card:hover img{
   transform: scale(1.1);
 }
@@ -140,11 +146,18 @@ button{
   padding: 10px 10px;
 }
 .color {
-  color: blueviolet;
+  /* color: blueviolet; */
+  background: linear-gradient(2deg, rgba(59,12,151,0.960463408996411) 15%, rgba(240,38,234,1) 50%, rgba(32,32,111,0.960463408996411) 87%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 button:hover,
 button:focus {
-  color: rgb(138, 43, 226);
+  background: linear-gradient(0deg, rgba(59,12,151,0.960463408996411) 15%, rgba(240,38,234,1) 50%, rgba(32,32,111,0.960463408996411) 87%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   text-decoration: none;
   cursor: pointer;
   box-shadow: 0 3px 10px rgb(138, 43, 226,0.25);
@@ -177,10 +190,12 @@ button:focus {
 input{
   border: 1px solid gray;
   border-radius: 4px;
-  size: large;
   font-size: 16px;
+  padding-left: 8px;
 }
 /* input-search-product */
+
+.input-search,
 .input-search-user,
 .input-search-product{
   position: relative;
@@ -189,8 +204,22 @@ input{
 .input-search-product input {
   padding-right: 30px; /* Để tạo không gian cho biểu tượng */
 }
+
+.input-search i{
+  background: linear-gradient(5deg, rgba(59,12,151,0.960463408996411) 15%, rgba(240,38,234,1) 50%, rgba(32,32,111,0.960463408996411) 87%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+/* .input-search i, */
 .input-search-user i,
 .input-search-product i {
+  
   position: absolute;
   top: 50%;
   right: 10px;

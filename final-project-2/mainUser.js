@@ -60,6 +60,15 @@ const handleAddUser = async () => {
   const phone = document.getElementById("user-phone").value
   const address = document.getElementById("user-address").value
   const avatar = document.getElementById("user-avatar").value
+  if (!userName) {
+    alert("Please enter a username")
+    return
+  }
+  if (!password) {
+    alert("Please enter a password")
+    return
+  }
+
   const newUser = {
     userName,
     email,
@@ -299,6 +308,7 @@ const getValueSearchUser = () => {
   const performSearch = () => {
     const searchValue = inputElement.value
     // Thực hiện hành động tìm kiếm với giá trị searchValue ở đây
+    console.log('first search', searchValue)
     searchUsers(searchValue)
 
     // openSearchProducts(item)
