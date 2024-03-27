@@ -69,6 +69,16 @@ const handleAddProduct = async () => {
     alert("Please enter a productName")
     return
   }
+  const discountValue = Number(discount)
+
+  if (isNaN(discountValue) || discountValue < 0) {
+    alert("Please enter a valid discount")
+    return
+  }
+  if (discountValue / 100 > 0.5) {
+    alert("Please enter a discount, a discount <50%")
+    return
+  }
   const newProduct = {
     productName,
     productType,
@@ -234,46 +244,134 @@ const gennerProductCard = (product) => {
   //   <strong> Is used: </strong>
   //   <input id="filter-product-is-used" type="checkbox" checked disabled/>
   //   </h4>`: ''}
-  return `
-  <div class="product-card">
-    <img class='product-image' src='${product.productImage}'/>
-    <p><strong>${product.productName}</strong></p>
+  const priceValue = Number(product.price);
 
-    <span style=" margin-right: 4px; color:rgb(245, 233, 5);">
-    <i class='bx bxs-star' ></i>
-    <i class='bx bxs-star' ></i>
-    <i class='bx bxs-star' ></i>
-    <i class='bx bxs-star' ></i>
-    <i class='bx bxs-star' ></i>
-    </span>
-    <span> |  Đã bán 100+ </span>
-    <p><s>${product.price} $</s>
-    ${product.isUsed ? `
-    <input id="filter-product-is-used" type="checkbox" checked disabled/>
-    `: ''}
-    </p>
-    <p style="color:red;">
-    ${product.discount ?
-      (product.price - product.price * product.discount / 100).toFixed(2) :
-      product.discount}  $
-    <span style="font-size:12px">- ${product.discount ? product.discount : ''} %</span>
-    </p>
-    <div class='actions'>
-      <button onclick='openProductDetailModal(${JSON.stringify(product.id)})'>
-      View Detail
-      </button>
 
-      <button onclick='handleDeleteProduct(${JSON.stringify(product.id)})'>
-      Delete product
-      </button>
+  // return `
+  //   <div class="product-card">
+  //     <img class='product-image' src='${product.productImage}'/>
+  //     <p><strong>${product.productName}</strong></p>
 
-      <button onclick='openEditProductForm(${JSON.stringify(product)})'>
-      Edit
-      </button>
+  //     <span style=" margin-right: 4px; color:rgb(245, 233, 5);">
+  //     <i class='bx bxs-star' ></i>
+  //     <i class='bx bxs-star' ></i>
+  //     <i class='bx bxs-star' ></i>
+  //     <i class='bx bxs-star' ></i>
+  //     <i class='bx bxs-star' ></i>
+  //     </span>
+  //     <span> |  Đã bán 100+ </span>
+  //     <p><s>${product.price} $</s>
+  //     ${product.isUsed ? `
+  //     <input id="filter-product-is-used" type="checkbox" checked disabled/>
+  //     `: ''}
+  //     </p>
+  //     <p style="color:red;">
+  //     ${product.discount ?
+  //     (product.price - product.price * product.discount / 100).toFixed(2) :
+  //     product.discount}  $
+  //     <span style="font-size:12px">- ${product.discount ? product.discount : ''} %</span>
+  //     </p>
+  //     <div class='actions'>
+  //       <button onclick='openProductDetailModal(${JSON.stringify(product.id)})'>
+  //       View Detail
+  //       </button>
+
+  //       <button onclick='handleDeleteProduct(${JSON.stringify(product.id)})'>
+  //       Delete product
+  //       </button>
+
+  //       <button onclick='openEditProductForm(${JSON.stringify(product)})'>
+  //       Edit
+  //       </button>
+  //     </div>
+
+  //   </div>
+  //   `
+  if (priceValue % 2 !== 0) {
+    // alert("Please enter a valid price");
+    return `
+    <div class="product-card" style="color:green;">
+      <img class='product-image' src='${product.productImage}'/>
+      <p><strong>${product.productName}</strong></p>
+  
+      <span style=" margin-right: 4px; color:rgb(245, 233, 5);">
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      </span>
+      <span> |  Đã bán 100+ </span>
+      <p><s>${product.price} $</s>
+      ${product.isUsed ? `
+      <input id="filter-product-is-used" type="checkbox" checked disabled/>
+      `: ''}
+      </p>
+      <p style="color:red;">
+      ${product.discount ?
+        (product.price - product.price * product.discount / 100).toFixed(2) :
+        product.discount}  $
+      <span style="font-size:12px">- ${product.discount ? product.discount : ''} %</span>
+      </p>
+      <div class='actions'>
+        <button onclick='openProductDetailModal(${JSON.stringify(product.id)})'>
+        View Detail
+        </button>
+  
+        <button onclick='handleDeleteProduct(${JSON.stringify(product.id)})'>
+        Delete product
+        </button>
+  
+        <button onclick='openEditProductForm(${JSON.stringify(product)})'>
+        Edit
+        </button>
+      </div>
+      
     </div>
-    
-  </div>
-  `
+    `
+  } else {
+    return `
+    <div class="product-card">
+      <img class='product-image' src='${product.productImage}'/>
+      <p><strong>${product.productName}</strong></p>
+  
+      <span style=" margin-right: 4px; color:rgb(245, 233, 5);">
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      <i class='bx bxs-star' ></i>
+      </span>
+      <span> |  Đã bán 100+ </span>
+      <p><s>${product.price} $</s>
+      ${product.isUsed ? `
+      <input id="filter-product-is-used" type="checkbox" checked disabled/>
+      `: ''}
+      </p>
+      <p style="color:red;">
+      ${product.discount ?
+        (product.price - product.price * product.discount / 100).toFixed(2) :
+        product.discount}  $
+      <span style="font-size:12px">- ${product.discount ? product.discount : ''} %</span>
+      </p>
+      <div class='actions'>
+        <button onclick='openProductDetailModal(${JSON.stringify(product.id)})'>
+        View Detail
+        </button>
+  
+        <button onclick='handleDeleteProduct(${JSON.stringify(product.id)})'>
+        Delete product
+        </button>
+  
+        <button onclick='openEditProductForm(${JSON.stringify(product)})'>
+        Edit
+        </button>
+      </div>
+      
+    </div>
+    `
+  }
+
 }
 // const handleOpenProduct = async () => {
 //   loadingDiv.style.display = 'none'
@@ -312,7 +410,7 @@ const handleOpenProduct = async () => {
   // console.log(productList)
 
   // check is Used & sort
-  const productIsUsedCheckbox = document.getElementById('filter-product-is-used')
+  const productIsUsedCheckbox = document.get
   const productSortUp = document.querySelector('.bx-sort-up')
   const productSortDown = document.querySelector('.bx-sort-down')
 
